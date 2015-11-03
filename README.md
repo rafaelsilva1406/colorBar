@@ -1,5 +1,5 @@
 # colorBar
-Create colorBar and add hex value to input 
+Create colorBar and add hex value to input. 
 **Notes:** Below I explain what parameters can get added to the colorBar API object please see params that can be added to add further customization
 1. Params - 
    1. **parentElAttr:** *Optional and only passed as object is represented as the object that gets attach as Attribute or Prop with jquery*

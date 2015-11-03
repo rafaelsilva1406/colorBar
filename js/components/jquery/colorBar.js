@@ -23,7 +23,7 @@
 		if(!$.isEmptyObject(options)){
 			//attach attributes
 			if(!$.isEmptyObject(options.inputElAttr)){
-				$(this).prop(options.inputElAttr);
+				$this.prop(options.inputElAttr);
 			}
 
 			//attach attributes
@@ -92,6 +92,8 @@
 					if(!$.isEmptyObject(options.listElAttr)){
 						$(li).prop(options.listElAttr);
 					}
+					$(li).addClass("colorBarHex");//add class so API can find later and attach listener
+					li.setAttribute("data-hex-value",v);
 					li.appendChild(t);//append text to li
 					cb.appendChild(li);//append li to ul
 				});
@@ -100,6 +102,27 @@
 				throw new Error(colorBarException('Color values must be empty'));
 			}
 
+			//hide colorBar after markup is build
+			cb.style.display = 'none';
+
+			//add event to list
+			$(document).on('click touch','.colorBarHex',function(){
+				var $thisChildEv = $(this),//instance current ele
+					hexV = $thisChildEv.attr("data-hex-value"); //capture current hex value
+				$this.prop({
+					'value':hexV,
+					'placeholder':hexV,
+				});//attach value to input
+				cb.style.display = 'none';//hide toolbar
+				return false;
+			});
+
+			//add event on click enable colorBar
+			$(document).on('click touch',$(btn),function(){
+				cb.style.display = 'block';
+				return false;
+			});
+			$this.prop('disabled',true);//disable input
 		}else{
 			//throw ex params options can not be empty
 			throw new Error(colorBarException('Please look at API document some params must be passed to have API work properly'));
