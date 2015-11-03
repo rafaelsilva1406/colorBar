@@ -4,8 +4,7 @@
 * @version 0.1
 * @Summary: API below creates markup template and add ability to attach attributes for further customization.
 */
-
-(function ($){
+define(["jquery"],function ($){
 	function colorBarException(message) {
 		return "colorBar API Exception: " + message;
 	}
@@ -102,9 +101,6 @@
 				throw new Error(colorBarException('Color values must be empty'));
 			}
 
-			//hide colorBar after markup is build
-			cb.style.display = 'none';
-
 			//add event to list
 			$(document).on('click touch','.colorBarHex',function(){
 				var $thisChildEv = $(this),//instance current ele
@@ -122,6 +118,9 @@
 				cb.style.display = 'block';
 				return false;
 			});
+
+			//hide colorBar after markup is build
+			cb.style.display = 'none';
 			$this.prop('disabled',true);//disable input
 		}else{
 			//throw ex params options can not be empty
@@ -130,4 +129,4 @@
 
 		return $this;
 	};
-}(jQuery));
+});
