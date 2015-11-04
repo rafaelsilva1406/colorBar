@@ -105,10 +105,13 @@ define(["jquery"],function ($){
 			$(document).on('click touch','.colorBarHex',function(){
 				var $thisChildEv = $(this),//instance current ele
 					hexV = $thisChildEv.attr("data-hex-value"); //capture current hex value
-				$this.prop({
+				$this.prop({//attach value to input
 					'value':hexV,
 					'placeholder':hexV,
-				});//attach value to input
+				}).css({
+					'color':'#ffffff',
+					'background-color':hexV
+				});
 				cb.style.display = 'none';//hide toolbar
 				return false;
 			});
